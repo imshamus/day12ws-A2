@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Generated random numbers</title>
 </head>
 <body>
-    <p>generated</p>
+    <h1 style = "margin: 10px">Generated Numbers</h1>
+
+    <div class = "container" style = "margin-left: 10px"> 
+    <!--container: This class creates a responsive fixed-width container for the content-->
+
+    <!-- <div class="container-fluid ms-3"> -->
+    <!--container-fluid ensures full width and ms-3 adds 10px left margin -->
+
+      <div class = "row"> <!--row: This class defines a row in the Bootstrap grid system.-->
+            <div th:each="num : ${randomNumbers}" class = "col-3 ms-0 mb-3"> 
+                <!--col-4: This class defines the column size. col-4 means each image will take up 1/3 of the available row space (since the grid has 12 columns, 12 / 3 = 4).-->
+                <!--mb-4: This adds margin to the bottom of each image to space them vertically.-->
+                
+                <img data-th-src="@{/images/{num}.jpg(num=${num})}" data-th-alt="${num}" class="img-fluid" style = "width: 200px; height: 200px;" />
+                <!--img-fluid: Makes the image responsive (adjusts size based on the parent container).-->
+                <!--style="width: 200px; height: 200px;": Specifies a fixed size for all images (200px by 200px).-->
+                <!--object-fit: cover;: Ensures the image fills the box while maintaining its aspect ratio (it may crop some parts of the image if necessary to fit the box).-->
+                
+                <!-- <img data-th-src="@{/images/{num}.jpg(num=${num})}" data-th-alt="${num}" class="w-50 h-50" /> Limits the width and height to 50% of the parent container (or the browser window size). -->
+            </div>
+        </div>
+    </div>
+    
+    <a style = "margin: 10px" href="/form">Generate More Numbers</a> 
+
 </body>
 </html>
